@@ -1,0 +1,12 @@
+export { ReactComponent as BellIcon } from "./bell.svg";
+export { ReactComponent as CalendarIcon } from "./calender.svg";
+export { ReactComponent as UserIcon } from "./avatar.svg";
+export { ReactComponent as DashboardIcon } from "./category.svg";
+export { ReactComponent as BoxIcon } from "./box.svg";
+export { ReactComponent as DiscountIcon } from "./discount.svg";
+export { ReactComponent as InfoCircleIcon } from "./info-circle.svg";
+export { ReactComponent as ProfileIcon } from "./profile-2user.svg";
+export { ReactComponent as TrendUpIcon } from "./trend-up.svg";
+export { ReactComponent as ArrowRightIcon } from "./arrow-right.svg";
+export { ReactComponent as SettingsIcon } from "./setting-2.svg";
+export { ReactComponent as LogoutIcon } from "./logout.svg";

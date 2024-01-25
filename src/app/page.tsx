@@ -1,113 +1,240 @@
+"use client";
+
+import {
+  ArrowRightIcon,
+  BellIcon,
+  BoxIcon,
+  CalendarIcon,
+  DashboardIcon,
+  DiscountIcon,
+  InfoCircleIcon,
+  LogoutIcon,
+  ProfileIcon,
+  SettingsIcon,
+  TrendUpIcon,
+  UserIcon,
+} from "@/assets/icons";
+import Tooltip from "@/ui/tool-tip";
+import logo from "@/assets/images/logo.svg";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+  const [active, setActive] = useState("");
+  const [collapsed, setCollapsed] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
+
+  const links = [
+    {
+      name: "Home",
+      icon: DashboardIcon,
+      slug: `/`,
+    },
+
+    {
+      name: "Trend",
+      icon: TrendUpIcon,
+      slug: `/trend`,
+    },
+
+    {
+      name: "Profiles",
+      icon: ProfileIcon,
+      slug: `/profiles`,
+    },
+    {
+      name: "Box",
+      icon: BoxIcon,
+      slug: `/box`,
+    },
+    {
+      name: "Discounts",
+      icon: DiscountIcon,
+      slug: `/discounts`,
+    },
+    {
+      name: "Info",
+      icon: InfoCircleIcon,
+      slug: `/info`,
+    },
+  ];
+
+  const OtherLinks = [
+    { name: "right", icon: ArrowRightIcon },
+    { name: "Settings", icon: SettingsIcon },
+    { name: "Logout", icon: LogoutIcon },
+  ];
+
+  const workspaces = [
+    { name: "Access Bank PLC", type: "Corprate", profiles: "7", initial: "AB" },
+    {
+      name: "Smart Business Ltd",
+      type: "Corprate",
+      profiles: "17",
+      initial: "SB",
+    },
+    {
+      name: "Fix the PIP Men Limited",
+      type: "Corprate",
+      profiles: "92",
+      initial: "FP",
+    },
+    { name: "Bigbenz Group", type: "Corprate", profiles: "44", initial: "BG" },
+    {
+      name: "Codelog Technologies Limited",
+      type: "Corprate",
+      profiles: "20",
+      initial: "CT",
+    },
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="w-full h-full">
+      <nav
+        className={`sticky top-0 bg-white border-b border-slate-200`}
+        style={{
+          boxShadow:
+            "1.8042941093444824px 1.8042941093444824px 13.532205581665039px 0px #0000000D",
+        }}
+      >
+        <div className={`h-20 pl-24`}>
+          <div className="flex items-center justify-between h-full px-9">
+            <h1 className="text-zinc-800 text-lg sm:text-xl font-semibold font-plus_jakarta leading-7">
+              Dashboard
+            </h1>
+
+            {/* <SearchBar className="w-[200px] md:w-[226px]" /> */}
+            <div className="flex items-center gap-7">
+              <CalendarIcon className=" text-2xl" />
+              <BellIcon className=" text-2xl" />
+              <UserIcon className=" text-2xl" />
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </nav>
+      <aside
+        className={`fixed top-0 left-0 bottom-0 h-full ${
+          collapsed ? "w-64" : "w-20"
+        } bg-white`}
+        style={{
+          boxShadow:
+            "1.6553467512130737px 1.6553467512130737px 12.41510009765625px 0px #0000000D",
+        }}
+      >
+        <div className="h-full flex flex-col ">
+          <div className="flex items-center gap-2 p-5 border-b border-[#C7C7CA] relative">
+            {showPopup && (
+              <div
+                className="absolute bg-white rounded-[10px] left-16 top-14 w-[300px]"
+                style={{ boxShadow: "2px 2px 100px 0px #00000033" }}
+              >
+                <div className="flex items-center justify-between border-b border-[#227549]/20 p-4">
+                  <p className="text-sm font-medium">Switch workspaces</p>
+                  <p className="text-xs font-light text-[#1CBD67]/50">
+                    see all
+                  </p>
+                </div>
+                <div className="px-3.5 py-2.5">
+                  {workspaces.map((workspace, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 border-b border-[#227549]/10 last:border-b-0 cursor-pointer p-2"
+                    >
+                      <div>
+                        <div className=" rounded-md bg-[#1CBD67] w-10 h-10 flex items-center justify-center text-sm ">
+                          {workspace.initial}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium line-clamp-1">
+                          {workspace.name}
+                        </p>
+                        <div className="flex items-center gap-1.5">
+                          <p className="font-light text-xs">
+                            {workspace.profiles} Profile(s)
+                          </p>
+                          <div className="rounded-md bg-[#E4EDFF] text-[8px] text-[#1D5FE0] px-3">
+                            {workspace.type}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div>
+              <div className="w-10 h-10 flex items-center justify-center relative">
+                <Image
+                  src={logo}
+                  alt="company logo"
+                  fill
+                  sizes="100%"
+                  className=" object-contain"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col flex-1 h-full overflow-y-auto ">
+            <div className="flex-1 py-5">
+              {links.map((link, i) => (
+                <motion.div
+                  // initial={{ scale: 0 }}
+                  // animate={{ scale: 1 }}
+                  key={i}
+                  onClick={() => (link.slug ? router.push(link.slug) : "")}
+                  className={`w-full h-[50px] flex items-center ${
+                    !collapsed && "justify-center"
+                  } hover:bg-green-100 md:cursor-pointer gap-2.5 px-5 border-r-[4px] ${
+                    active.includes(link.slug)
+                      ? "border-[#1CBD67]"
+                      : " border-transparent"
+                  }`}
+                >
+                  <link.icon
+                    className={`text-2xl ${
+                      active.includes(link.slug)
+                        ? "text-[#1CBD67]"
+                        : "text-black"
+                    }`}
+                  />
+                  {collapsed && <p className="text-sm">{link.name}</p>}
+                  {!collapsed && <Tooltip message={link.name} />}
+                </motion.div>
+              ))}
+            </div>
+            <div
+              className="bg-[#F2F5F3] rounded-t-2xl"
+              style={{
+                boxShadow:
+                  "3.5935423374176025px 3.5935423374176025px 7.187084674835205px 0px #0000001A",
+              }}
+            >
+              <div className="p-5 pb-0">
+                {OtherLinks.map((link, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2.5 py-1.5 px-2.5 rounded-lg w-full cursor-pointer hover:bg-[#E1E7E3] mb-1.5"
+                  >
+                    <link.icon
+                      className={`text-[18px] ${
+                        active.includes(link.name)
+                          ? "text-[#1CBD67]"
+                          : "text-black"
+                      }`}
+                    />
+                    {collapsed && <p className="text-sm">{link.name}</p>}
+                    {!collapsed && <Tooltip message={link.name} />}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
     </main>
   );
 }
