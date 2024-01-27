@@ -10,3 +10,6 @@ export { ReactComponent as TrendUpIcon } from "./trend-up.svg";
 export { ReactComponent as ArrowRightIcon } from "./arrow-right.svg";
 export { ReactComponent as SettingsIcon } from "./setting-2.svg";
 export { ReactComponent as LogoutIcon } from "./logout.svg";
+export { ReactComponent as SunIcon } from "./sun.svg";
+export { ReactComponent as MoonIcon } from "./moon.svg";
+export { ReactComponent as SearchIcon } from "./search.svg";
